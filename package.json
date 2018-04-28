@@ -1,0 +1,58 @@
+{
+  "name": "mysql-eventstore",
+  "version": "0.1.0",
+  "description": "A node.js mysql eventstore client",
+  "author": "Vladimir Rondelli <vladimir@cashfarm.com>",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "build": "yarn run clean && yarn lint && yarn test && yarn tsc && yarn lint-pkg",
+    "build:tests": "tsc && tsc -p tests/",
+    "clean": "rm -rf lib/ & rm -rf tests/compiled",
+    "check": "nsp check",
+    "cover": "nyc npm test",
+    "dev": "yarn run clean; tsc -w & tsc -w -p tests & ava --watch",
+    "lint": "tslint --project ./tsconfig.json -c ./tslint.json --type-check ./src/**/*.ts",
+    "lint-pkg": "ts-package-lint",
+    "pretest": "trash ./coverage && yarn tsc && yarn tsc -- -p tests",
+    "test": "NODE_ENV=test DEBUG=test* DEBUG_COLORS=true ava",
+    "tsc": "node_modules/.bin/tsc"
+  },
+  "dependencies": {
+    "@cashfarm/lang": "^0.8.4",
+    "@cashfarm/plow": "^0.5.0-rc.6",
+    "@types/mysql2": "git+https://github.com/types/mysql2.git",
+    "inversify": "^4.11.1",
+    "mysql": "^2.15.0",
+    "mysql2": "^1.5.3",
+    "promise-mysql": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/mysql": "^2.15.3",
+    "@types/node": "^9.4.7",
+    "@types/reflect-metadata": "^0.0.5",
+    "@types/source-map-support": "^0.4.0",
+    "ts-node": "^3.2.0",
+    "ts-package-lint": "^0.2.2",
+    "tsdoc": "^0.0.4",
+    "tslib": "^1.7.1",
+    "tslint": "^5.5.0",
+    "tslint-microsoft-contrib": "^5.0.1",
+    "typedoc": "^0.7.1",
+    "typescript": "^2.3.x",
+    "typings": "^1.3.2"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "it",
+      "expect"
+    ]
+  },
+  "autotypes": {
+    "ignore": [
+      "stripe"
+    ]
+  }
+}
